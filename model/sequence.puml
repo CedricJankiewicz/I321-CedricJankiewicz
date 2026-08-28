@@ -1,0 +1,9 @@
+@startuml
+Client->GlobalRouter:GET /pizzas
+GlobalRouter->PizzaRouter:Delegates to /pizzas routes
+PizzaRouter->Controller:getPizzas(req)
+Controller->DB:SELECT pizzas
+Controller<-DB:data
+PizzaRouter<-Controller:data
+Client<-PizzaRouter:data.json
+@enduml
